@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb02715cd7150c04da4ec97ea16b1fb4, type: 3}
+  m_Name: Cafe
+  m_EditorClassIdentifier: 
+  BuildingName: "\u041A\u0430\u0444\u0435"
+  Type: 8
+  BuildCost:
+  - Type: 1
+    Amount: 200
+  Production:
+  - Type: 3
+    Amount: 1
+  ProductionRequirements:
+  - Type: 2
+    Amount: 1

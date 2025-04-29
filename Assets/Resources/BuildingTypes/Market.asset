@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb02715cd7150c04da4ec97ea16b1fb4, type: 3}
+  m_Name: Market
+  m_EditorClassIdentifier: 
+  BuildingName: "\u0420\u044B\u043D\u043E\u043A"
+  Type: 3
+  BuildCost:
+  - Type: 2
+    Amount: 50
+  Production:
+  - Type: 0
+    Amount: 0
+  ProductionRequirements: []

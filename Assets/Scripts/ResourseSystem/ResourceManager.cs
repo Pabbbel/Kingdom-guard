@@ -9,7 +9,7 @@ public class ResourceManager : MonoBehaviour
 
     // Событие для обновления UI или других систем
     public delegate void OnResourceChange(ResourceType type, int newAmount);
-    public event OnResourceChange onResourceChange;
+    public event OnResourceChange OnResourceChange;
 
     private void Awake()
     {
@@ -61,6 +61,6 @@ public class ResourceManager : MonoBehaviour
     private void TriggerResourceChanged(ResourceType type)
     {
         //Debug.Log($"Ресурс {type} изменен. Новое количество: {_resources[type]}");
-        onResourceChange?.Invoke(type, _resources[type]);
+        OnResourceChange?.Invoke(type, _resources[type]);
     }
 }

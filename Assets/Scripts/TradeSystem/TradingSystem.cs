@@ -13,7 +13,7 @@ public class TradingSystem : MonoBehaviour
 
     private bool _trading = false;
 
-    private List<StoreItem> ResourseToTrade = new List<StoreItem>();
+    private List<StoreItem> _resourcesToTrade = new List<StoreItem>();
     private Dictionary<StoreItem, Coroutine> _activeTradings = new Dictionary<StoreItem, Coroutine>();
 
 
@@ -27,8 +27,8 @@ public class TradingSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        ActiveBuildings.OnMarketBuildet += OnMarketBuildet;
-        ActiveBuildings.OnMarketNotBuildet += OnMarketNotBuildet;
+        ActiveBuildings.OnMarketBuildet += OnMarketBuilt;
+        ActiveBuildings.OnMarketNotBuildet += OnMarketNotBuilt;
 
         TradeButton.ActivateTrading += OnActivateTrading;
         TradeButton.DeactivateTrading += OnDeactivateTrading;
@@ -36,8 +36,8 @@ public class TradingSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        ActiveBuildings.OnMarketBuildet -= OnMarketBuildet;
-        ActiveBuildings.OnMarketNotBuildet -= OnMarketNotBuildet;
+        ActiveBuildings.OnMarketBuildet -= OnMarketBuilt;
+        ActiveBuildings.OnMarketNotBuildet -= OnMarketNotBuilt;
 
         TradeButton.ActivateTrading -= OnActivateTrading;
         TradeButton.DeactivateTrading -= OnDeactivateTrading;
@@ -73,14 +73,14 @@ public class TradingSystem : MonoBehaviour
 
         foreach (StoreItem storeItem in _storeItem)
         {
-            ResourseToTrade.Add(storeItem);
+            _resourcesToTrade.Add(storeItem);
             Debug.Log($"Добавлен элемент торговли: {storeItem.StoreItemData.TradeResourse}");
         }
 
-        Debug.Log($"В списке для продажи {ResourseToTrade.Count} элементов");
+        Debug.Log($"В списке для продажи {_resourcesToTrade.Count} элементов");
     }
 
-    private void OnMarketBuildet()
+    private void OnMarketBuilt()
     {
         _trading = true;
         Debug.Log("Рынок построен");
@@ -89,7 +89,7 @@ public class TradingSystem : MonoBehaviour
         _overlayPanel.SetActive(!_trading);
     }
 
-    private void OnMarketNotBuildet()
+    private void OnMarketNotBuilt()
     {
         _trading = false;
         Debug.Log("Рынок не построен");

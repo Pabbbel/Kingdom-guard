@@ -6,15 +6,15 @@ using Zenject;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform enemySpawnPoint;
+    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Transform _enemySpawnPoint;
     [SerializeField] private WaveSystem _waveSystem;
 
-    public List<GameObject> activeEnemies = new List<GameObject>();
+    public List<GameObject> ActiveEnemies = new List<GameObject>();
 
     private GameStateSystem _gameStateSystem;
 
-    private static event Action EnemySpawned;
+    private static event Action s_EnemySpawned;
 
     [Inject]
     public void Construct(GameStateSystem gameStateSystem)
@@ -51,8 +51,8 @@ public class EnemySpawner : MonoBehaviour
             randomOffset.z = 0;
 
             GameObject enemy = Instantiate(
-                enemyPrefab,
-                enemySpawnPoint.position + randomOffset,
+                _enemyPrefab,
+                _enemySpawnPoint.position + randomOffset,
                 Quaternion.identity
             );
 
@@ -64,14 +64,14 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemyStateMachine.TransitionToState(enemyStateMachine.CurrentState);
 
-                activeEnemies.Add(enemy);
+                ActiveEnemies.Add(enemy);
                 Debug.Log("Юнит создан и должен начать наступление.");
 
                 yield return new WaitForSeconds(.1f); // Интервал между спавном
             }
         }
         _waveSystem.AddWave();
-        EnemySpawned?.Invoke();
+        s_EnemySpawned?.Invoke();
         Debug.Log("Волна врагов заспавнилась");
 
         _gameStateSystem.ChangeState(GameState.Combat);
